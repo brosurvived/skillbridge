@@ -9,6 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+  .card{
+    transform-style:preserve-3d;
+    transition:0.5s;
+}
+
+.card:hover{
+    transform:
+        rotateX(10deg)
+        rotateY(-10deg)
+        translateY(-15px);
+}
+
+.glow{
+    box-shadow:
+    0 0 40px rgba(59,130,246,.5),
+    0 0 80px rgba(147,51,234,.3);
+}
 *{
 margin:0;
 padding:0;
@@ -205,6 +222,49 @@ padding:100px 8%;
 font-size:3rem;
 margin-bottom:20px;
 }
+  <section style="padding:120px 8%;text-align:center;position:relative;overflow:hidden;">
+
+<div style="
+width:250px;
+height:250px;
+background:#3b82f6;
+border-radius:50%;
+position:absolute;
+left:10%;
+top:20%;
+filter:blur(80px);
+opacity:.25;
+animation:float 8s infinite ease-in-out;">
+</div>
+
+<div style="
+width:220px;
+height:220px;
+background:#9333ea;
+border-radius:50%;
+position:absolute;
+right:10%;
+bottom:20%;
+filter:blur(80px);
+opacity:.25;
+animation:float 10s infinite ease-in-out;">
+</div>
+
+<h2 style="font-size:3rem;margin-bottom:20px;">
+Building India's Next Generation of Talent
+</h2>
+
+<p style="
+max-width:800px;
+margin:auto;
+font-size:1.1rem;
+color:#cbd5e1;
+">
+Every successful creator, entrepreneur, developer, designer, and innovator starts somewhere.
+SkillBridge exists to give talented students their first opportunity and help businesses discover the future before everyone else.
+</p>
+
+</section>
 
 /* Footer */
 footer{
@@ -349,29 +409,34 @@ Join as Student
 
 <section>
 
-<h2 class="title">SkillBridge vs Others</h2>
+<h2 class="title">The Future Starts Here 🚀</h2>
 
 <div class="grid">
 
 <div class="card">
-<h3>Fiverr</h3>
-<p>Hire freelancers.</p>
+<h3>🌟 Hidden Talent</h3>
+<p>
+Thousands of talented students possess incredible skills but lack opportunities to showcase them. SkillBridge helps uncover and connect this hidden talent with real-world projects.
+</p>
 </div>
 
 <div class="card">
-<h3>Upwork</h3>
-<p>Hire professionals.</p>
+<h3>🚀 Real Experience</h3>
+<p>
+Students gain practical experience, build strong portfolios, and develop professional skills while working on meaningful projects from real clients.
+</p>
 </div>
 
 <div class="card">
-<h3>SkillBridge ⭐</h3>
-<p>Discover future talent before everyone else.</p>
+<h3>🤝 Win-Win Ecosystem</h3>
+<p>
+Businesses access affordable, ambitious talent while students gain valuable opportunities to learn, earn, and grow.
+</p>
 </div>
 
 </div>
 
 </section>
-
 <section class="cta">
 
 <h2>Build With India's Future Talent</h2>
