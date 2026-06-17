@@ -304,39 +304,19 @@ font-size:2rem;
 <nav>
 <div class="logo" style="display:flex;align-items:center;gap:12px;">
 
-<svg width="50" height="50" viewBox="0 0 100 100">
+<svg width="42" height="42" viewBox="0 0 100 100">
     <defs>
-        <linearGradient id="g" x1="0" x2="1">
-            <stop offset="0%" stop-color="#3B82F6"/>
-            <stop offset="100%" stop-color="#A855F7"/>
-        </linearGradient>
+        <radialGradient id="orb">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="30%" stop-color="#60A5FA"/>
+            <stop offset="100%" stop-color="#7C3AED"/>
+        </radialGradient>
     </defs>
 
-    <circle cx="50" cy="50" r="45" fill="url(#g)"/>
-
-    <path d="M25 60 Q50 25 75 60"
-          stroke="white"
-          stroke-width="8"
-          fill="none"
-          stroke-linecap="round"/>
-
-    <path d="M35 40
-             C35 25 65 25 65 40
-             C65 55 35 55 35 70"
-          stroke="white"
-          stroke-width="8"
-          fill="none"
-          stroke-linecap="round"/>
+    <circle cx="50" cy="50" r="40" fill="url(#orb)"/>
 </svg>
 
-<span style="
-font-size:1.8rem;
-font-weight:800;
-background:linear-gradient(90deg,#60A5FA,#A855F7);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;">
-SkillBridge
-</span>
+<span style="font-weight:800;font-size:1.8rem;">SkillBridge</span>
 
 </div>
 </nav>
