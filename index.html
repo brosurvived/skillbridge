@@ -1,478 +1,341 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TalentBridge | Discover India's Next Generation of Talent</title>
+<title>TalentBridge Premium V3</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js">
+const spot=document.querySelector('.spotlight');
+window.addEventListener('mousemove',e=>{
+spot.style.left=(e.clientX-250)+'px';
+spot.style.top=(e.clientY-250)+'px';
+});
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+document.querySelectorAll('.btn').forEach(btn=>{
+btn.addEventListener('mousemove',e=>{
+const r=btn.getBoundingClientRect();
+btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)/8}px,${(e.clientY-r.top-r.height/2)/8}px)`;
+});
+btn.addEventListener('mouseleave',()=>btn.style.transform='');
+});
 
+document.querySelectorAll('.counter').forEach(c=>{
+let target=+c.dataset.target;
+gsap.to(c,{
+innerText:target,
+duration:2,
+snap:{innerText:1},
+scrollTrigger:{trigger:c,start:'top 90%'}
+});
+});
+
+gsap.utils.toArray('.card').forEach(card=>{
+gsap.from(card,{
+scale:.85,
+opacity:0,
+duration:1,
+scrollTrigger:{trigger:card,start:'top 85%'}
+});
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js">
+const spot=document.querySelector('.spotlight');
+window.addEventListener('mousemove',e=>{
+spot.style.left=(e.clientX-250)+'px';
+spot.style.top=(e.clientY-250)+'px';
+});
+
+document.querySelectorAll('.btn').forEach(btn=>{
+btn.addEventListener('mousemove',e=>{
+const r=btn.getBoundingClientRect();
+btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)/8}px,${(e.clientY-r.top-r.height/2)/8}px)`;
+});
+btn.addEventListener('mouseleave',()=>btn.style.transform='');
+});
+
+document.querySelectorAll('.counter').forEach(c=>{
+let target=+c.dataset.target;
+gsap.to(c,{
+innerText:target,
+duration:2,
+snap:{innerText:1},
+scrollTrigger:{trigger:c,start:'top 90%'}
+});
+});
+
+gsap.utils.toArray('.card').forEach(card=>{
+gsap.from(card,{
+scale:.85,
+opacity:0,
+duration:1,
+scrollTrigger:{trigger:card,start:'top 85%'}
+});
+});
+</script>
 <style>
-  .card{
-    transform-style:preserve-3d;
-    transition:0.5s;
-}
-
-.card:hover{
-    transform:
-        rotateX(10deg)
-        rotateY(-10deg)
-        translateY(-15px);
-}
-
-.glow{
-    box-shadow:
-    0 0 40px rgba(59,130,246,.5),
-    0 0 80px rgba(147,51,234,.3);
-}
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:#081120;
-color:white;
-overflow-x:hidden;
-}
-
-/* Background */
-.bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-background:linear-gradient(135deg,#081120,#111827);
-}
-
-.blob{
-position:absolute;
-border-radius:50%;
-filter:blur(70px);
-opacity:.4;
-animation:float 10s infinite ease-in-out;
-}
-
-.blob1{
-width:350px;
-height:350px;
-background:#3b82f6;
-top:5%;
-left:5%;
-}
-
-.blob2{
-width:300px;
-height:300px;
-background:#9333ea;
-top:25%;
-right:5%;
-animation-delay:2s;
-}
-
-.blob3{
-width:400px;
-height:400px;
-background:#06b6d4;
-bottom:0;
-left:30%;
-animation-delay:4s;
-}
-
-@keyframes float{
-50%{
-transform:translateY(-30px) translateX(20px);
-}
-}
-
-/* Navbar */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:25px 8%;
-}
-
-.logo{
-font-size:2rem;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#050814;color:#fff;overflow-x:hidden}
+canvas{position:fixed;inset:0;z-index:-2}
+section{padding:120px 8%}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hero h1{font-size:clamp(4rem,8vw,7rem);max-width:1100px}
+.hero p{max-width:900px;color:#cbd5e1;margin:25px auto;font-size:1.2rem}
+.gradient{background:linear-gradient(90deg,#60a5fa,#a855f7);-webkit-background-clip:text;color:transparent}
+.btn{padding:18px 34px;border-radius:18px;text-decoration:none;font-weight:700;display:inline-block;margin:10px}
+.primary{background:#fff;color:#000}
+.secondary{border:1px solid #fff;color:#fff}
+.title{text-align:center;font-size:3rem;margin-bottom:60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:30px;border-radius:24px;backdrop-filter:blur(10px)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+svg.hero-svg{width:300px;height:300px;margin-bottom:30px}
+.logo-text{
+font-size:clamp(3rem,7vw,6rem);
 font-weight:800;
+margin-bottom:30px;
+background:linear-gradient(90deg,#60a5fa,#a855f7,#60a5fa);
+background-size:200% auto;
+-webkit-background-clip:text;
+color:transparent;
+text-shadow:0 0 40px rgba(96,165,250,.35);
+animation:shine 4s linear infinite, floaty 5s ease-in-out infinite;
 }
+@keyframes shine{to{background-position:200% center}}
+@keyframes floaty{50%{transform:translateY(-12px)}}
 
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
+.logo-text{
+font-size:clamp(4rem,8vw,7rem);
+font-weight:900;
+letter-spacing:-2px;
+background:linear-gradient(135deg,#ffffff,#60a5fa,#a855f7,#ffffff);
+background-size:300% 300%;
+-webkit-background-clip:text;
+color:transparent;
+animation:gradientShift 8s ease infinite,floaty 5s ease-in-out infinite;
+filter:drop-shadow(0 0 35px rgba(96,165,250,.45));
 }
-
-/* Hero */
-.hero{
-min-height:90vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
-
-.hero h1{
-font-size:4rem;
-max-width:900px;
-line-height:1.1;
-}
-
-.hero p{
-max-width:800px;
-margin:25px auto;
-font-size:1.1rem;
-color:#cbd5e1;
-}
-
-.btn{
-display:inline-block;
-padding:15px 28px;
-border-radius:14px;
-text-decoration:none;
-font-weight:700;
-margin:10px;
-transition:.3s;
-}
-
-.primary{
-background:white;
-color:#111827;
-}
-
-.secondary{
-border:2px solid rgba(255,255,255,.3);
-color:white;
-backdrop-filter:blur(10px);
-}
-
-.btn:hover{
-transform:translateY(-5px);
-}
-
-/* Sections */
-section{
-padding:80px 8%;
-}
-
-.title{
-text-align:center;
-font-size:2.5rem;
-margin-bottom:50px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-/* Glass Cards */
+.glow-orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:-1}
+.orb1{width:350px;height:350px;background:#60a5fa22}
+.orb2{width:350px;height:350px;background:#a855f722}
 .card{
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.1);
-backdrop-filter:blur(12px);
-padding:25px;
-border-radius:25px;
-transition:.3s;
+background:rgba(255,255,255,.07)!important;
+backdrop-filter:blur(22px)!important;
+box-shadow:0 8px 40px rgba(255,255,255,.05);
+transition:.45s;
 }
-
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-12px) scale(1.03);
+box-shadow:0 20px 60px rgba(96,165,250,.25);
+}
+section{position:relative}
+.reveal-word{display:inline-block}
+@keyframes gradientShift{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
-.card h3{
-margin-bottom:10px;
-}
 
-/* Stats */
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
+html{scroll-behavior:smooth}
+body::before{
+content:'';position:fixed;inset:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(96,165,250,.15),transparent 35%),
+radial-gradient(circle at 80% 30%,rgba(168,85,247,.15),transparent 35%),
+radial-gradient(circle at 50% 80%,rgba(255,255,255,.05),transparent 30%);
+pointer-events:none;z-index:-1;
 }
-
-.stat{
-text-align:center;
-padding:25px;
+.nav-premium{
+position:fixed;top:15px;left:50%;transform:translateX(-50%);
+padding:12px 22px;border-radius:999px;
 background:rgba(255,255,255,.08);
-border-radius:20px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.1);
+z-index:999;
 }
-
-.stat h2{
-font-size:2rem;
+.marquee{overflow:hidden;white-space:nowrap;padding:30px 0;opacity:.8}
+.marquee-track{display:inline-block;animation:marquee 20s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.spotlight{
+position:fixed;width:500px;height:500px;border-radius:50%;
+background:radial-gradient(circle,rgba(255,255,255,.08),transparent 60%);
+pointer-events:none;mix-blend-mode:screen;z-index:0;
 }
+.counter{font-size:3rem;font-weight:800}
+.btn{transition:.3s}
 
-/* CTA */
-.cta{
-text-align:center;
-padding:100px 8%;
-}
-
-.cta h2{
-font-size:3rem;
-margin-bottom:20px;
-}
-  <section style="padding:120px 8%;text-align:center;position:relative;overflow:hidden;">
-
-<div style="
-width:250px;
-height:250px;
-background:#3b82f6;
-border-radius:50%;
-position:absolute;
-left:10%;
-top:20%;
-filter:blur(80px);
-opacity:.25;
-animation:float 8s infinite ease-in-out;">
-</div>
-
-<div style="
-width:220px;
-height:220px;
-background:#9333ea;
-border-radius:50%;
-position:absolute;
-right:10%;
-bottom:20%;
-filter:blur(80px);
-opacity:.25;
-animation:float 10s infinite ease-in-out;">
-</div>
-
-<h2 style="font-size:3rem;margin-bottom:20px;">
-Building India's Next Generation of Talent
-</h2>
-
-<p style="
-max-width:800px;
-margin:auto;
-font-size:1.1rem;
-color:#cbd5e1;
-">
-Every successful creator, entrepreneur, developer, designer, and innovator starts somewhere.
-TalentBridge exists to give talented students their first opportunity and help businesses discover the future before everyone else.
-</p>
-
-</section>
-
-/* Footer */
-footer{
-text-align:center;
-padding:40px;
-border-top:1px solid rgba(255,255,255,.1);
-color:#94a3b8;
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:2.5rem;
-}
-
-.title{
-font-size:2rem;
-}
-
-.cta h2{
-font-size:2rem;
-}
-
-}
 </style>
-
 </head>
-
 <body>
-
-<div class="bg">
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
-</div>
-
-<nav>
-<div class="logo" style="display:flex;align-items:center;gap:12px;">
-
-<svg width="42" height="42" viewBox="0 0 100 100">
-    <defs>
-        <radialGradient id="orb">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="30%" stop-color="#60A5FA"/>
-            <stop offset="100%" stop-color="#7C3AED"/>
-        </radialGradient>
-    </defs>
-
-    <circle cx="50" cy="50" r="40" fill="url(#orb)"/>
-</svg>
-
-<span style="font-weight:800;font-size:1.8rem;">TalentBridge</span>
-
-</div>
-</nav>
+<div class="spotlight"></div>
+<div class="nav-premium">TalentBridge 🌉</div>
+<canvas id="bg"></canvas><div class="glow-orb orb1"></div><div class="glow-orb orb2"></div>
 
 <section class="hero">
-
-<h1>Discover India's Next Generation of Talent</h1>
-
-<p>
-TalentBridge connects businesses with talented students from Class 9 to College. Hire affordable, ambitious and verified student freelancers for design, development, editing, content creation and more.
-</p>
-
-<div>
-<a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdw5qOxDreKG3xKHMfdZnTFjHvZVKFveya7hIRgTHRpo-E6ew/viewform" target="_blank">
-Hire Talent
-</a>
-
-<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScgyM2Efs1kT-LG0cqFALMjn_Gh4VjD0qQwXDIkiYZmDvwpXA/viewform" target="_blank">
-Join as Student
-</a>
-</div>
-
+<div class="logo-text">TalentBridge <span style="font-size:.8em">🌉</span></div>
+<h1>Connecting <span class="gradient">Ambitious Talent</span> With Real Opportunities</h1>
+<p>TalentBridge helps students from Class 9 to College gain real-world experience while helping businesses access motivated and affordable talent.</p>
+<a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdw5qOxDreKG3xKHMfdZnTFjHvZVKFveya7hIRgTHRpo-E6ew/viewform?usp=publish-editor">Hire Talent</a>
+<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScgyM2Efs1kT-LG0cqFALMjn_Gh4VjD0qQwXDIkiYZmDvwpXA/viewform?usp=header">Join TalentBridge</a>
 </section>
 
 <section>
-
-<div class="stats">
-
-<div class="stat">
-<h2>100+</h2>
-<p>Students Goal</p>
-</div>
-
-<div class="stat">
-<h2>50+</h2>
-<p>Projects Goal</p>
-</div>
-
-<div class="stat">
-<h2>24h</h2>
-<p>Response Time</p>
-</div>
-
-<div class="stat">
-<h2>₹</h2>
-<p>Affordable Talent</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="why">
-
-<h2 class="title">Why Choose TalentBridge?</h2>
-
+<h2 class="title">The Problem</h2>
 <div class="grid">
-
-<div class="card">
-<h3>🎓 Verified Student Talent</h3>
-<p>Work with real students who are building their careers and portfolios.</p>
+<div class="card">Millions of students have skills but no opportunity.</div>
+<div class="card">Traditional freelancing platforms favor experienced professionals.</div>
+<div class="card">Businesses struggle to find affordable creative talent.</div>
 </div>
-
-<div class="card">
-<h3>💰 Affordable Pricing</h3>
-<p>High quality work at prices startups and creators can afford.</p>
-</div>
-
-<div class="card">
-<h3>⚡ Faster Hiring</h3>
-<p>Skip lengthy hiring processes and find talent quickly.</p>
-</div>
-
-<div class="card">
-<h3>🚀 Fresh Ideas</h3>
-<p>Young creators understand modern tools, trends and audiences.</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="services">
-
-<h2 class="title">Popular Services</h2>
-
-<div class="grid">
-
-<div class="card">🎨 Graphic Design</div>
-<div class="card">🖼️ Thumbnail Design</div>
-<div class="card">🎥 Video Editing</div>
-<div class="card">✍️ Content Writing</div>
-<div class="card">💻 Website Development</div>
-<div class="card">📱 App Development</div>
-<div class="card">📈 Social Media Management</div>
-<div class="card">🎯 UI / UX Design</div>
-
-</div>
-
 </section>
 
 <section>
-
-<h2 class="title">The Future Starts Here 🚀</h2>
-
+<h2 class="title">How TalentBridge Works</h2>
 <div class="grid">
-
-<div class="card">
-<h3>🌟 Hidden Talent</h3>
-<p>
-Thousands of talented students possess incredible skills but lack opportunities to showcase them. TalentBridge helps uncover and connect this hidden talent with real-world projects.
-</p>
+<div class="card"><h3>1. Showcase Skills</h3><p>Create a profile and portfolio.</p></div>
+<div class="card"><h3>2. Get Matched</h3><p>Receive relevant opportunities.</p></div>
+<div class="card"><h3>3. Build Experience</h3><p>Work on real projects and grow.</p></div>
 </div>
-
-<div class="card">
-<h3>🚀 Real Experience</h3>
-<p>
-Students gain practical experience, build strong portfolios, and develop professional skills while working on meaningful projects from real clients.
-</p>
-</div>
-
-<div class="card">
-<h3>🤝 Win-Win Ecosystem</h3>
-<p>
-Businesses access affordable, ambitious talent while students gain valuable opportunities to learn, earn, and grow.
-</p>
-</div>
-
-</div>
-
-</section>
-<section class="cta">
-
-<h2>Building India's Next Generation of Talent 🚀</h2>
-<p>
-The future isn't waiting to graduate.<br>
-Hire talented students who are ready to create, build and innovate today.<br>
-<b>TalentBridge helps you discover the future.</b>
-</p>
-
-<br>
-
-<a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdw5qOxDreKG3xKHMfdZnTFjHvZVKFveya7hIRgTHRpo-E6ew/viewform" target="_blank">
-Post a Project
-</a>
-
-<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScgyM2Efs1kT-LG0cqFALMjn_Gh4VjD0qQwXDIkiYZmDvwpXA/viewform" target="_blank">
-Become a Freelancer
-</a>
-
 </section>
 
-<footer id="contact">
-<p>📧 brosurvived@gmail.com</p>
-<p>© 2026 TalentBridge. All Rights Reserved.</p>
-</footer>
+<section>
+<h2 class="title">Skills Marketplace</h2>
+<div class="grid">
+<div class="card">Graphic Design</div><div class="card">Video Editing</div>
+<div class="card">Web Development</div><div class="card">App Development</div>
+<div class="card">Content Writing</div><div class="card">Digital Marketing</div>
+<div class="card">UI/UX Design</div><div class="card">Photography</div>
+<div class="card">Animation</div><div class="card">Programming</div>
+<div class="card">Virtual Assistance</div><div class="card">Data Entry</div>
+</div>
+</section>
 
+<section>
+<h2 class="title">Students & Clients</h2>
+<div class="compare">
+<div class="card"><h3>For Students</h3><br>Portfolio Building<br>Real Projects<br>Networking<br>Income Generation<br>Career Growth</div>
+<div class="card"><h3>For Clients</h3><br>Affordable Talent<br>Fresh Ideas<br>Fast Turnaround<br>Flexible Hiring<br>Future Professionals</div>
+</div>
+</section>
+
+<section>
+<h2 class="title">Why We're Different</h2>
+<div class="compare">
+<div class="card"><h3>Traditional Platforms</h3><p>Experience first. Hard for beginners.</p></div>
+<div class="card"><h3>TalentBridge</h3><p>Potential first. Built for student growth.</p></div>
+</div>
+</section>
+
+<section>
+<h2 class="title">Vision & Mission</h2>
+<div class="card" style="max-width:1000px;margin:auto;text-align:center">
+<h3>Our Vision</h3>
+<p>Every talented student deserves meaningful opportunities regardless of age or experience.</p><br>
+<h3>Our Mission</h3>
+<p>Transform skills into opportunities and help businesses discover the next generation of talent.</p>
+</div>
+</section>
+
+<div class="marquee"><div class="marquee-track">
+Graphic Design ✦ Web Development ✦ Video Editing ✦ Marketing ✦ UI/UX ✦ AI ✦ Programming ✦ Graphic Design ✦ Web Development ✦ Video Editing ✦ Marketing ✦ UI/UX ✦ AI ✦ Programming ✦
+</div></div>
+<section style="text-align:center">
+<h2 class="title">Ready to Build the Future?</h2>
+<a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdw5qOxDreKG3xKHMfdZnTFjHvZVKFveya7hIRgTHRpo-E6ew/viewform?usp=publish-editor">Post a Project</a>
+<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScgyM2Efs1kT-LG0cqFALMjn_Gh4VjD0qQwXDIkiYZmDvwpXA/viewform?usp=header">Become Freelancer</a>
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray('section').forEach((sec,i)=>{
+gsap.from(sec,{
+opacity:0,
+y:120,
+duration:1.4,
+ease:'power4.out',
+scrollTrigger:{trigger:sec,start:'top 80%'}
+});
+});
+
+gsap.to('.orb1',{
+x:500,y:250,duration:15,repeat:-1,yoyo:true,ease:'sine.inOut'
+});
+gsap.to('.orb2',{
+x:-400,y:300,duration:18,repeat:-1,yoyo:true,ease:'sine.inOut'
+});
+
+document.querySelectorAll('.card').forEach(card=>{
+card.addEventListener('mousemove',e=>{
+const r=card.getBoundingClientRect();
+const x=e.clientX-r.left-r.width/2;
+const y=e.clientY-r.top-r.height/2;
+card.style.transform=`perspective(1000px) rotateY(${x/20}deg) rotateX(${-y/20}deg) translateY(-10px)`;
+});
+card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+
+const c=document.getElementById('bg'),x=c.getContext('2d');
+function r(){c.width=innerWidth;c.height=innerHeight}r();addEventListener('resize',r);
+let m={x:innerWidth/2,y:innerHeight/2};onmousemove=e=>{m.x=e.clientX;m.y=e.clientY}
+const p=[...Array(180)].map(()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:0,vy:0}));
+function a(){
+x.clearRect(0,0,c.width,c.height);
+p.forEach(o=>{
+let dx=m.x-o.x,dy=m.y-o.y,d=Math.hypot(dx,dy);
+if(d<200){o.vx-=dx/d*.15;o.vy-=dy/d*.15;}
+o.x+=o.vx;o.y+=o.vy;o.vx*=.98;o.vy*=.98;
+if(o.x<0)o.x=innerWidth;if(o.x>innerWidth)o.x=0;
+if(o.y<0)o.y=innerHeight;if(o.y>innerHeight)o.y=0;
+x.beginPath();x.arc(o.x,o.y,1.5,0,6.28);x.fillStyle='#7c8cff';x.fill();
+for(let j=0;j<4;j++){
+let q=p[(Math.random()*p.length)|0];
+let dd=Math.hypot(o.x-q.x,o.y-q.y);
+if(dd<120){
+x.beginPath();
+x.moveTo(o.x,o.y);
+x.lineTo(q.x,q.y);
+x.strokeStyle='rgba(124,140,255,.08)';
+x.stroke();
+}
+}
+});
+requestAnimationFrame(a);
+}
+a();
+
+const spot=document.querySelector('.spotlight');
+window.addEventListener('mousemove',e=>{
+spot.style.left=(e.clientX-250)+'px';
+spot.style.top=(e.clientY-250)+'px';
+});
+
+document.querySelectorAll('.btn').forEach(btn=>{
+btn.addEventListener('mousemove',e=>{
+const r=btn.getBoundingClientRect();
+btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)/8}px,${(e.clientY-r.top-r.height/2)/8}px)`;
+});
+btn.addEventListener('mouseleave',()=>btn.style.transform='');
+});
+
+document.querySelectorAll('.counter').forEach(c=>{
+let target=+c.dataset.target;
+gsap.to(c,{
+innerText:target,
+duration:2,
+snap:{innerText:1},
+scrollTrigger:{trigger:c,start:'top 90%'}
+});
+});
+
+gsap.utils.toArray('.card').forEach(card=>{
+gsap.from(card,{
+scale:.85,
+opacity:0,
+duration:1,
+scrollTrigger:{trigger:card,start:'top 85%'}
+});
+});
+</script>
 </body>
 </html>
